@@ -17,7 +17,7 @@ class Product(models.Model):
     weight = models.IntegerField(default=0)
     customer = models.ForeignKey(Customer)
 
-     def __str__(self):
+    def __str__(self):
         return self.description
 
 
