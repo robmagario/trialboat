@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+{% block head %}
+    <title>Trial Boat | Home</title>
+{% endblock %}
+{% block body %}
+    {% if not user.is_authenticated %}
+        <meta http-equiv="REFRESH" content="0;url=/">
+    {% endif %}
+    <header>
+        <h1>Django Consultants</h1>
+
+        <h2>Home Page</h2>
+    </header>
+{% endblock %}
+</html>

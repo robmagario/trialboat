@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-
 {% comment %}
   Main page to authenticate users.
 {% endcomment %}
@@ -38,11 +31,10 @@
       {% if next %}
         <input type="hidden" name="next" value="{{ next }}" />
       {% else %}
-        <input type="hidden" name="next" value="/admin/" />
+          <input type="hidden" name="next" value="/home"/>
       {% endif %}
       <input type="submit" value="login" />
     </form>
   </section>
 {% endblock %}
-</body>
 </html>

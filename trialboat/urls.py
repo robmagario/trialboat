@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from django.contrib.auth.views import login
-from django.contrib import auth
+
+from django.views.generic import TemplateView
 
 urlpatterns = patterns('',
     # Examples:
@@ -9,5 +9,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'django.contrib.auth.views.login')
+    url(r'^home/', TemplateView.as_view(template_name="home.html"), name='home'),
+    url(r'^$', 'django.contrib.auth.views.login', {'template_name': 'registration/login.html'}, name='auth')
+
     )
