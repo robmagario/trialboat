@@ -1,4 +1,6 @@
 from django.db import models
+from django import forms
+
 
 
 class Customer(models.Model):
@@ -25,7 +27,8 @@ class Product(models.Model):
         return self.description
 
 class Order(models.Model):
-    product_description = models.CharField(max_length=1000)
+
+    user = models.ForeignKey(Customer)
     address_line = models.CharField(max_length=1000)
     order_weight = models.IntegerField(max_length=1000)
     price = models.IntegerField(max_length=1000)
