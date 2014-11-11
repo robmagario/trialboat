@@ -13,7 +13,7 @@ class Customer(models.Model):
     password = models.CharField(max_length=20)
 
     def __str__(self):
-        return '%s %s' % (self.firstname,self.familyname)
+        return '%s %s' % (self.first_name,self.family_name)
 
 
 class Product(models.Model):
@@ -23,3 +23,10 @@ class Product(models.Model):
 
     def __str__(self):
         return self.description
+
+class Order(models.Model):
+    product_description = models.CharField(max_length=1000)
+    address_line = models.CharField(max_length=1000)
+    order_weight = models.IntegerField(max_length=1000)
+    price = models.IntegerField(max_length=1000)
+
