@@ -7,9 +7,10 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'trialboat.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
+   url(r'^home/', TemplateView.as_view(template_name="home.html"), name='home'),
+    url(r'^$', 'django.contrib.auth.views.login', {'template_name': 'registration/login.html'}, name='auth'),
+
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^home/', TemplateView.as_view(template_name="home.html"), name='home'),
-    url(r'^$', 'django.contrib.auth.views.login', {'template_name': 'registration/login.html'}, name='auth')
-
+    url(r'^mainapp/', include('mainapp.urls')),
     )
