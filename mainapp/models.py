@@ -20,7 +20,7 @@ class Customer(models.Model):
     address= models.CharField(max_length=200)
     zip = models.CharField(max_length=10)
     city = models.CharField(max_length=100)
-    country = models.ForeignKey(Country, default='BR')
+    country = models.ForeignKey(Country, default=Country.objects.filter(initials='BR'))
     email = models.CharField(max_length=100)
     username = models.CharField(max_length=12)
     password = models.CharField(max_length=20)
