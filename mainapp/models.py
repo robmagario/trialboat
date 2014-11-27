@@ -1,5 +1,17 @@
 from django.db import models
-from django import forms
+
+
+class CountryManager(models.Manager):
+    def get_by_natural_key(self, initials):
+        return self.get(initials=initials)
+
+
+class Country(models.Model):
+    objects = CountryManager()
+    initials = models.CharField(max_length=10, unique=True)
+
+    def __unicode__(self):
+        return u'%s' % self.initials
 
 
 class Customer(models.Model):
@@ -8,7 +20,7 @@ class Customer(models.Model):
     address= models.CharField(max_length=200)
     zip = models.CharField(max_length=10)
     city = models.CharField(max_length=100)
-    country = models.CharField(max_length=100)
+    country = models.ForeignKey(Country, default='BR')
     email = models.CharField(max_length=100)
     username = models.CharField(max_length=12)
     password = models.CharField(max_length=20)
