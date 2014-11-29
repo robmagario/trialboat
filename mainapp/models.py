@@ -10,8 +10,8 @@ class Country(models.Model):
     objects = CountryManager()
     initials = models.CharField(max_length=10, default='BR', unique=True)
 
-    def __unicode__(self):
-        return u'%s' % self.initials
+    def __str__(self):
+        return '%s' % self.initials
 
 
 class Customer(models.Model):
