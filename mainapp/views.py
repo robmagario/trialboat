@@ -1,9 +1,11 @@
-from django.views.generic import TemplateView
-
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-# Create your views here.
+
+from mainapp import models
 
 
 @login_required
-class HomeView(TemplateView):
-    template_name = "home.html"
+def home(request):
+    orders = models.Order.objects.filter(user=request.user)
+    context = {'orders': orders}
+    return render(request, "home.html", context)
