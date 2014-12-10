@@ -13,8 +13,8 @@
         <h2>Home Page</h2>
     </header>
     <ul>
-        {% for order in orders %}
-            <li>{{ order.price }}</li>
+        {% for product in products %}
+            <li>{{ product.description }}</li>
         {% endfor %}
     </ul>
 {% endblock %}

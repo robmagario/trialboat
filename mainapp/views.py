@@ -6,8 +6,8 @@ from mainapp import models
 
 @login_required
 def home(request):
-    orders = models.Order.objects.filter(user=request.user)
-    context = {'orders': orders}
+    orders = models.Product.objects.filter(customer=models.Customer.objects.get(user=request.user))
+    context = {'products': orders}
     return render(request, "home.html", context)
 
 

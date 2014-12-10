@@ -15,7 +15,7 @@ class Country(models.Model):
 
 
 class Customer(models.Model):
-    user = models.OneToOneField(User)
+    user = models.ForeignKey(User)
     address= models.CharField(max_length=200)
     zip = models.CharField(max_length=10)
     city = models.CharField(max_length=100)
