@@ -9,3 +9,8 @@ def home(request):
     orders = models.Order.objects.filter(user=request.user)
     context = {'orders': orders}
     return render(request, "home.html", context)
+
+
+def register(request):
+    context = {}
+    return render(request, "register.html", context)
