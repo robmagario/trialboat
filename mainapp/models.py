@@ -22,7 +22,7 @@ class Customer(models.Model):
     country = models.ForeignKey(Country)
 
     def __str__(self):
-        return '%s %s' % (self.first_name, self.family_name)
+        return '%s' % self.user
 
 
 class Product(models.Model):
