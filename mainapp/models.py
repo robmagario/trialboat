@@ -21,6 +21,7 @@ class Customer(models.Model):
     city = models.CharField(max_length=100)
     country = models.ForeignKey(Country)
 
+
     def __str__(self):
         return '%s' % self.user
 
@@ -29,6 +30,7 @@ class Product(models.Model):
     description = models.CharField(max_length=200)
     weight = models.IntegerField(default=0)
     customer = models.ForeignKey(Customer)
+
 
     def __str__(self):
         return self.description
