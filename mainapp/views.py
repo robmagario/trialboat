@@ -2,13 +2,14 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 from mainapp import models
-from mainapp.forms import UserForm, UserProfileForm
+from mainapp.forms import UserForm, UserProfileForm, SelectProductForm
 
 
 @login_required
 def home(request):
-    orders = models.Product.objects.filter(customer=models.Customer.objects.get(user=request.user))
-    context = {'products': orders}
+    products = models.Product.objects.filter(customer=models.Customer.objects.get(user=request.user))
+    print(products)
+    context = {'form': SelectProductForm(products)}
     return render(request, "home.html", context)
 
 

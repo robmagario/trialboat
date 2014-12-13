@@ -10,12 +10,20 @@
     {% endif %}
     <header>
         <h1>Django Consultants</h1>
+
         <h2>Home Page</h2>
     </header>
-    <ul>
-        {% for product in products %}
-            <li>{{ product.description }}</li>
-        {% endfor %}
-    </ul>
+    <table>
+        <thead>
+        <tr>
+            <th>Forward</th>
+            <th>Description</th>
+            <th>Weight</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{ form.products }}
+        </tbody>
+    </table>
 {% endblock %}
 </html>

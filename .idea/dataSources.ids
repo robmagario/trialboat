@@ -126,6 +126,7 @@
       <foreign-key name="#FAKE_mainapp_customer_2" columns="country_id" ref-table="mainapp_country" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <exported-key name="#FAKE_mainapp_order_1" table="mainapp_order" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_mainapp_product_1" table="mainapp_product" schema="" catalog="" columns="customer_id"/>
+      <index name="mainapp_customer_e8701ad4" unique="true" columns="user_id"/>
       <index name="mainapp_customer_93bfec8a" unique="true" columns="country_id"/>
     </table>
     <table name="mainapp_order" schema="" catalog="" type="TABLE">
