@@ -13,17 +13,21 @@
 
         <h2>Home Page</h2>
     </header>
-    <table>
-        <thead>
-        <tr>
-            <th>Forward</th>
-            <th>Description</th>
-            <th>Weight</th>
-        </tr>
-        </thead>
-        <tbody>
-        {{ form.products }}
-        </tbody>
-    </table>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            <thead>
+            <tr>
+                <th>Forward</th>
+                <th>Description</th>
+                <th>Weight</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{ form.products }}
+            </tbody>
+        </table>
+        <input type="submit" value="Order"/>
+    </form>
 {% endblock %}
 </html>
