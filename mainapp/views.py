@@ -25,8 +25,7 @@ def home(request):
 @login_required
 def payment(request):
     if request.session.get("products", None) is not None:
-        print(request.session["products"])
-        context = {"form": PaymentForm()}
+        context = {"form": PaymentForm(), "products": request.session["products"]}
         return render(request, "payment.html", context)
     else:
         return redirect("/home")

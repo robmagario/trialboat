@@ -11,6 +11,25 @@
     <header>
         <h2>Payment</h2>
     </header>
+    <table>
+        <thead>
+        <tr>
+            <th>Product</th>
+            <th>Description</th>
+            <th>Weight</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>&nbsp;</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.weight }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br/>
     <form action="" method="post">
         {% csrf_token %}
         {{ form }}
