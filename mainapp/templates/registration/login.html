@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 {% comment %}
   Main page to authenticate users.
@@ -15,8 +14,7 @@
 
 {% block body %}
   <header>
-    <h1>Django Consultants</h1>
-    <h2>Login Page</h2>
+      <h1>Trial Boat</h1>
   </header>
 
     <a href="/register">
@@ -27,15 +25,17 @@
     {% if form.errors %}
       <p>Your username and password didn't match, please try again.</p>
     {% endif %}
-
-    <form method="post" action=".">
+      <div class="container">
+          <form class="form-signin" role="form" method="post" action=".">
       {% csrf_token %}
       <p>
-        <label for="id_username">Username:</label>
+
+              <h2 class="form-signin-heading">Please sign in</h2>
+              <label for="id_username" class="sr-only">Username:</label>
         {{ form.username }}
       </p>
       <p>
-        <label for="id_password">Password:</label>
+          <label for="id_password" class="sr-only">Password:</label>
         {{ form.password }}
       </p>
       {% if next %}
@@ -43,8 +43,9 @@
       {% else %}
           <input type="hidden" name="next" value="/home"/>
       {% endif %}
-      <input type="submit" value="login" />
+              <input class="btn btn-lg btn-primary btn-block" type="submit" value="login"/>
     </form>
+      </div>
   </section>
 {% endblock %}
 </html>
