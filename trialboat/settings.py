@@ -56,6 +56,8 @@ ROOT_URLCONF = 'trialboat.urls'
 
 WSGI_APPLICATION = 'trialboat.wsgi.application'
 
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases

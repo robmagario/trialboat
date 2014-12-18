@@ -56,3 +56,8 @@ class SelectProductForm(forms.Form):
     def __init__(self, products_data, *args, **kwargs):
         super(SelectProductForm, self).__init__(*args, **kwargs)
         self.fields['products'].choices = [(p.id, p) for p in products_data]
+
+
+class PaymentForm(forms.Form):
+    choices = [('paypal', "PayPal"), ('bank_transfer', "Bank Transfer")]
+    payment_type = forms.ChoiceField(choices=choices, widget=forms.RadioSelect())

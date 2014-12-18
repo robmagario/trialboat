@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
 from mainapp import models
-from mainapp.forms import UserForm, UserProfileForm, SelectProductForm
+from mainapp.forms import UserForm, UserProfileForm, SelectProductForm, PaymentForm
 
 
 @login_required
@@ -11,14 +11,25 @@ def home(request):
     if (request.method == 'POST'):
         form = SelectProductForm(products, data=request.POST)
         if form.is_valid():
+            products_data = []
             for index, val in enumerate(form.cleaned_data.get("products")):
-                print(form.fields["products"].choices[index][1].description)
+                products_data.append(form.fields["products"].choices[index][1])
+            request.session["products"] = products_data
+            return redirect("/payment")
     else:
         form = SelectProductForm(products)
-    context = {'form': form}
-    return render(request, "home.html", context)
+        context = {'form': form}
+        return render(request, "home.html", context)
 
 
+@login_required
+def payment(request):
+    if request.session.get("products", None) is not None:
+        print(request.session["products"])
+        context = {"form": PaymentForm()}
+        return render(request, "payment.html", context)
+    else:
+        return redirect("/home")
 
 def register(request):
     registered = False
