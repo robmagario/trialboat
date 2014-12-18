@@ -57,6 +57,7 @@ ROOT_URLCONF = 'trialboat.urls'
 WSGI_APPLICATION = 'trialboat.wsgi.application'
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 # Database
