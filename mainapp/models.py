@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from django.core.mail import send_mail
 
 class CountryManager(models.Manager):
     def get_by_natural_key(self, initials):
@@ -43,3 +46,16 @@ class Order(models.Model):
     def __str__(self):
             return self.address_line
 
+
+@receiver(post_save, sender=Product)
+def product_registered(created, instance, **kwargs):
+    if created:
+        email = """Hello %s!
+
+We would like to inform you that your product '%s' has arrived. Please login to %s to pay for your product so that we forward your product to you.
+
+Sincerely,
+%s
+        """ % (instance.customer.user.first_name, instance.description, "http://127.0.0.1:8080", "Trial Boat")
+        send_mail("Your product has arrived!", email, "admin@magario.com", [instance.customer.user.email],
+                  fail_silently=False)

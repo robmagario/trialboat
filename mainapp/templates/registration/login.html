@@ -11,41 +11,38 @@
     <link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
   <title>Trial Boat | Login</title>
 {% endblock %}
-
+<div class="container">
 {% block body %}
+    <body style="background:url('{{ STATIC_URL }}images/background.JPG')">
   <header>
       <h1>Trial Boat</h1>
   </header>
 
-    <a href="/register">
-        <button class="btn btn-primary">Register Here</button>
-    </a>
 
+  <div class="center-block" id="holderblock"
+  ">
   <section>
     {% if form.errors %}
       <p>Your username and password didn't match, please try again.</p>
     {% endif %}
-      <div class="container">
-          <form class="form-signin" role="form" method="post" action=".">
+      <form role="form" class="form-horizontal" method="post" action=".">
       {% csrf_token %}
-      <p>
-
-              <h2 class="form-signin-heading">Please sign in</h2>
-              <label for="id_username" class="sr-only">Username:</label>
+          <label class="customlabel" for="id_username"><h4>Username:</h4></label>
         {{ form.username }}
-      </p>
-      <p>
-          <label for="id_password" class="sr-only">Password:</label>
-        {{ form.password }}
-      </p>
+          <label for="id_password"><h4>Password:</h4></label>
+          {{ form.password }}
       {% if next %}
         <input type="hidden" name="next" value="{{ next }}" />
       {% else %}
           <input type="hidden" name="next" value="/home"/>
       {% endif %}
-              <input class="btn btn-lg btn-primary btn-block" type="submit" value="login"/>
+          <input type="submit" id="somebutton" class="btn btn-lg btn-success" value="Login"/>
+          <a href="/register">
+              <button class="btn btn-lg btn-success" id="registerbutton">Register</button>
+          </a>
     </form>
       </div>
   </section>
+    </div></body>
 {% endblock %}
 </html>

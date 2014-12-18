@@ -1,24 +1,42 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
 from mainapp import models
-from mainapp.forms import UserForm, UserProfileForm, SelectProductForm
+from mainapp.forms import UserForm, UserProfileForm, SelectProductForm, PaymentForm
 
 
 @login_required
 def home(request):
     products = models.Product.objects.filter(customer=models.Customer.objects.get(user=request.user))
-    if (request.method == 'POST'):
+    if request.method == 'POST':
         form = SelectProductForm(products, data=request.POST)
         if form.is_valid():
-            for index in form.cleaned_data.get("products"):
-                print(form.fields["products"].choices[int(index) - 1][1].description)
+            products_data = []
+            for index, val in enumerate(form.cleaned_data.get("products")):
+                products_data.append(form.fields["products"].choices[index][1])
+            request.session["products"] = products_data
+            return redirect("/payment")
     else:
         form = SelectProductForm(products)
-    context = {'form': form}
-    return render(request, "home.html", context)
+        context = {'form': form}
+        return render(request, "home.html", context)
 
 
+@login_required
+def payment(request):
+    if request.session.get("products", None) is not None:
+        form = PaymentForm(data=request.POST)
+        context = {"form": form, "products": request.session["products"]}
+        if request.method == 'POST':
+            if form.is_valid():
+                if (form.cleaned_data['payment_type'] == 'bank_transfer'):
+                    print("Bank transfer.")
+                    pass
+                elif (form.cleaned_data['payment_type'] == 'paypal'):
+                    pass
+        return render(request, "payment.html", context)
+    else:
+        return redirect("/home")
 
 def register(request):
     registered = False
