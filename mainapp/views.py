@@ -8,7 +8,7 @@ from mainapp.forms import UserForm, UserProfileForm, SelectProductForm, PaymentF
 @login_required
 def home(request):
     products = models.Product.objects.filter(customer=models.Customer.objects.get(user=request.user))
-    if (request.method == 'POST'):
+    if request.method == 'POST':
         form = SelectProductForm(products, data=request.POST)
         if form.is_valid():
             products_data = []
@@ -25,7 +25,15 @@ def home(request):
 @login_required
 def payment(request):
     if request.session.get("products", None) is not None:
-        context = {"form": PaymentForm(), "products": request.session["products"]}
+        form = PaymentForm(data=request.POST)
+        context = {"form": form, "products": request.session["products"]}
+        if request.method == 'POST':
+            if form.is_valid():
+                if (form.cleaned_data['payment_type'] == 'bank_transfer'):
+                    print("Bank transfer.")
+                    pass
+                elif (form.cleaned_data['payment_type'] == 'paypal'):
+                    pass
         return render(request, "payment.html", context)
     else:
         return redirect("/home")
