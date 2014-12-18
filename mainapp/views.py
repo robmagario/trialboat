@@ -11,8 +11,8 @@ def home(request):
     if (request.method == 'POST'):
         form = SelectProductForm(products, data=request.POST)
         if form.is_valid():
-            for index in form.cleaned_data.get("products"):
-                print(form.fields["products"].choices[int(index) - 1][1].description)
+            for index, val in enumerate(form.cleaned_data.get("products")):
+                print(form.fields["products"].choices[index][1].description)
     else:
         form = SelectProductForm(products)
     context = {'form': form}
