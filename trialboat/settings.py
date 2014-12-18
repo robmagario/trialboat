@@ -60,10 +60,21 @@ WSGI_APPLICATION = 'trialboat.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+#}
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "development_trialboat",
+        "USER": "trialboat",
+        "PASSWORD": "IchibatoNakara872",
+        "HOST": "128.199.195.186",
+        "PORT": "5432",
     }
 }
 
